@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Writing JOIN Queries</title>
+</head>
+<body>
+    <h1>Practice Writing JOIN Queries</h1>
+    <section aria-label="Overview">
+        <h2>Overview</h2>
+        <p>In this activity, you will practice writing JOIN queries using a SQL simulator. The tasks will focus on combining data from multiple tables, such as merging customer and order data to view complete order details. This hands-on exercise will reinforce the concepts learned in the lesson and provide immediate feedback.</p>
+    </section>
+
+    <section aria-label="Learning Outcomes">
+        <h2>Learning Outcomes</h2>
+        <p>By the end of this activity, you will be able to:</p>
+        <ul>
+            <li>Write a JOIN query to combine data from two tables.</li>
+            <li>Understand how different types of JOIN queries affect output results.</li>
+        </ul>
+    </section>
+
+    <section aria-label="Getting Started">
+        <h2>Getting Started</h2>
+        <p>Open VS Code, and connect to the Chinook database using the SQL Server.</p>
+    </section>
+
+    <section aria-label="Tasks">
+        <h2>Tasks</h2>
+
+        <article aria-labelledby="task1">
+            <h3 id="task1">Task 1: Combine Customer and Invoice data.</h3>
+            <p><strong>Objective:</strong> Write a JOIN query to combine data from the Customer and Invoice tables.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Write an INNER JOIN query to retrieve the customer ID, last name and invoice ID on the PostalCode column from the Customer table and the BillingPostalCode on the Invoice table.</li>
+                    <li>Execute the query, look at all the results. Note the number of records and whether there are any NULL values in the results.</li>
+                </ol>
+                <pre><code>SELECT Customer.CustomerId, 
+    Customer.LastName, 
+    Invoice.InvoiceId
+FROM Customer
+JOIN -- Your code here to join the Invoice table</code></pre>
+                <p>Tip: When using JOINs, always check the number of rows returned and whether any columns have NULLs. This helps you identify if data is missing due to the type of JOIN used or issues in relationships between tables.</p>
+            </div>
+            <h4>Task 1 Solution:</h4>
+            <pre><code>-- Task 1: Combine customer and invoice data.
+SELECT
+    Customer.CustomerId,
+    Customer.LastName,
+    Invoice.InvoiceId
+FROM Customer
+JOIN Invoice ON Customer.PostalCode = Invoice.BillingPostalCode;
+        
+--The Customer table contains NULL values in the PostalCode column. These records are excluded when using an INNER JOIN, resulting in 384 retrieved records (rows) with no records containing NULL.</code></pre>
+        </article>
+
+        <article aria-labelledby="task2">
+            <h3 id="task2">Task 2: Combine Customer and Invoice data with a LEFT JOIN.</h3>
+            <p><strong>Objective:</strong> Try out a LEFT JOIN and analyze the results.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Now, write a LEFT JOIN query to retrieve the customer ID, last name and invoice ID on the PostalCode column from the Customer table and the BillingPostalCode on the Invoice table.</li>
+                    <li>Execute the query, look at all the results, and note the number of records and whether there are any NULL values in the results.</li>
+                </ol>
+            </div>
+            <h4>Task 2 Solution:</h4>
+            <pre><code>-- Task 2: Explore LEFT JOIN
+SELECT
+    Customer.CustomerId,
+    Customer.LastName,
+    Invoice.InvoiceId
+FROM Customer
+LEFT JOIN Invoice ON Customer.PostalCode = Invoice.BillingPostalCode;
+
+-- The LEFT JOIN will produce 388 records, including four customers without a PostalCode. This is because the LEFT JOIN retrieves all Customer table data and any matching InvoiceId's from the Invoice table. For those four customers without a matching BillingPostalCode, the InvoiceId value is NULL. The following query validates that these four customers don’t have a PostalCode.
+
+SELECT CustomerId, LastName, PostalCode  
+FROM Customer
+WHERE PostalCode IS NULL;</code></pre>
+        </article>
+
+        <article aria-labelledby="task3">
+            <h3 id="task3">Task 3: Combine Customer and Invoice Data with a RIGHT JOIN.</h3>
+            <p><strong>Objective:</strong> Try out a RIGHT JOIN and analyze the results.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Next, change your LEFT JOIN to a RIGHT JOIN and execute the query.</li>
+                    <li>Look at all the results, and note the number of records and whether there are any NULL values in the results.</li>
+                </ol>
+            </div>
+            <h4>Task 3 Solution:</h4>
+            <pre><code>-- Task 3: Explore RIGHT JOIN
+SELECT
+    Customer.CustomerId,
+    Customer.LastName,
+    Invoice.InvoiceId
+FROM Customer
+RIGHT JOIN Invoice ON Customer.PostalCode = Invoice.BillingPostalCode;
+
+-- The RIGHT JOIN retrieves all records from the Invoice table and any matching records from the Customer table. It will also include NULL values for CustomerIds and LastNames where there is no match in the Customer table. This is why the RIGHT JOIN returns 412 records, which includes records where the PostalCode from the Customer table is NULL.</code></pre>
+        </article>
+
+        <article aria-labelledby="task4">
+            <h3 id="task4">Task 4: Combine Customer and Invoice Data with a FULL OUTER JOIN.</h3>
+            <p><strong>Objective:</strong> Try out a FULL OUTER JOIN and analyze the results.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Finally, change your RIGHT JOIN to a FULL OUTER JOIN and execute the query.</li>
+                    <li>Look at all the results and note the number of records and whether there are any NULL values in the results.</li>
+                </ol>
+            </div>
+            <h4>Task 4 Solution:</h4>
+            <pre><code>-- Task 4: Explore FULL OUTER JOIN
+SELECT
+    Customer.CustomerId,
+    Customer.LastName,
+    Invoice.InvoiceId
+FROM Customer
+FULL OUTER JOIN Invoice ON Customer.PostalCode = Invoice.BillingPostalCode;
+
+-- The FULL OUTER JOIN returns all records from both tables, including matching and non-matching ones. In this instance, the FULL OUTER JOIN produced 416 records and includes records containing NULL values from both tables.</code></pre>
+        </article>
+    </section>
+
+    <section aria-label="Summary">
+        <h2>Summary</h2>
+        <p>In this activity you explored retrieving data from multiple tables at once using JOIN commands, enabling you to retrieve specific data sets efficiently. Through practice, reflection, and feedback, you will strengthen your command over basic querying techniques essential for effective data manipulation.</p>
+    </section>
+
+    <section aria-label="Key Points">
+        <h2>Key Points</h2>
+        <p>SQL JOINs create tailored data subsets, saving time while optimizing usefulness.</p>
+    </section>
+</body>
+</html>

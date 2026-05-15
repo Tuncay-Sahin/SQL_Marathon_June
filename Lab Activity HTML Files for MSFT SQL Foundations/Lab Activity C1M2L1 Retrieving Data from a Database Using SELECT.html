@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retrieve Data from a Database Using SELECT</title>
+</head>
+<body>
+    <header>
+        <h1>Retrieve Data from a Database Using SELECT</h1>
+        <p>In this activity, you will put into practice the core SQL skills acquired in the lesson by crafting and executing SELECT statements. This hands-on exercise allows you to experience writing queries that retrieve data from the Chinook Database, applying the concepts taught in the module.</p>
+    </header>
+
+    <section>
+        <h2>Learning Outcomes</h2>
+        <ul>
+            <li>Write SQL SELECT statements to retrieve specific data from a database.</li>
+            <li>Use the WHERE clause to filter records.</li>
+            <li>Sort query results using the ORDER BY clause.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Getting Started</h2>
+        <p>Open Visual Studio Code (VS Code), and connect to the Chinook database using the SQL Server extension.</p>
+    </section>
+
+    <section>
+        <h2>Tasks</h2>
+
+        <article>
+            <h3>Task 1: Retrieve the Name and Email of All Customers</h3>
+            <p><strong>Objective:</strong> Practice retrieving data from specific table columns, reinforcing basic SELECT syntax.</p>
+            <p><strong>Steps:</strong></p>
+            <ol>
+                <li>On the first line, type ‘SELECT’ and then specify the columns you want to retrieve each separated by a comma: FirstName, LastName, Email.</li>
+                <li>On the second line, type ‘FROM’ and then specify the table from which to retrieve the data: Customer.</li>
+            </ol>
+            <p><strong>Tip:</strong> Don’t forget to end your code with a semicolon ( ; ).</p>
+        </article>
+
+        <article>
+            <h3>Task 2: Extract Information for Customers Located in Germany</h3>
+            <p><strong>Objective:</strong> Use the WHERE clause to filter records based on specific criteria.</p>
+            <p><strong>Steps:</strong></p>
+            <ol>
+                <li>On the first line, type ‘SELECT’ and then specify the columns you want to retrieve: FirstName, LastName, and City.</li>
+                <li>On the second line, type ‘FROM’ and then specify the table from which to retrieve the data: Customer.</li>
+                <li>On the third line, type ‘WHERE’ and then specify the criteria by which to filter: Germany.</li>
+            </ol>
+            <p><strong>Tip:</strong> Ensure there are no whitespaces inside the quotation marks indicating the location.</p>
+        </article>
+
+        <article>
+            <h3>Task 3: Get a List of All Song Tracks Sorted by Their Name in Ascending Order</h3>
+            <p><strong>Objective:</strong> Practice using the ORDER BY clause for sorting query results.</p>
+            <p><strong>Steps:</strong></p>
+            <ol>
+                <li>On the first line, type ‘SELECT’ and then specify the columns you want to retrieve.</li>
+                <li>On the second line, type ‘FROM’ and then specify the table from which to retrieve the data.</li>
+                <li>On the third line, type ‘ORDER BY’ and specify which column to sort and whether to sort by ascending (ASC) or descending (DESC) order.</li>
+            </ol>
+        </article>
+
+        <article>
+            <h3>Task 4: Identify the Rock Genre Tracks and Present Them Sorted in Ascending Order by Name</h3>
+            <p><strong>Objective:</strong> Integrate filtering and sorting for more effective data retrieval.</p>
+            <p><strong>Steps:</strong></p>
+            <ol>
+                <li>On the first line, type ‘SELECT’ and then specify the columns you want to retrieve.</li>
+                <li>On the second line, type ‘FROM’ and then specify the table from which to retrieve the data.</li>
+                <li>On the third line, type ‘WHERE’ and filter for the Rock genre ID.</li>
+                <li>On the fourth line, type ‘ORDER BY’ and specify which column to sort in ascending order (ASC).</li>
+            </ol>
+            <p><strong>Tip:</strong> The GenreId for “Rock” tracks is 1.</p>
+        </article>
+    </section>
+
+    <section>
+        <h2>Summary</h2>
+        <p>In this activity you explored foundational SQL skills, enabling you to confidently approach data retrieval tasks as you continue to develop your SQL expertise. Through practice, reflection, and feedback, you will strengthen your command over basic querying techniques essential for effective data manipulation.</p>
+    </section>
+
+    <section>
+        <h2>Key Points</h2>
+        <p>SQL queries are built on the basic SELECT command, using other clauses to filter and sort data output.</p>
+    </section>
+
+    <section>
+        <h2>Reference Solution</h2>
+        <p>After completing this activity, take a moment to review the exemplar solution. This sample solution can offer insights into different techniques and approaches. Reflect on what you can learn from the exemplar solution to improve your coding skills.</p>
+        <p>Remember, multiple solutions can exist for some problems; the goal is to learn and grow as a programmer by exploring various approaches. Use the exemplar solution as a learning tool to enhance your understanding and refine your approach to coding challenges.</p>
+        
+        <article>
+            <h3>Exemplar Solutions:</h3>
+            <pre>
+-- Task 1: Retrieve the name and email of all customers
+SELECT FirstName, LastName, Email
+FROM Customer;
+
+-- Task 2: Extract information for customers located in Germany
+SELECT FirstName, LastName, City
+FROM Customer
+WHERE Country = 'Germany';
+
+-- Task 3: Get a list of all song tracks sorted by their Name in ascending order
+SELECT Name
+FROM Track
+ORDER BY Name ASC;
+
+-- Task 4: Identify the rock genre tracks and present them sorted in ascending order by name
+SELECT Name
+FROM Track
+WHERE GenreId = 1 -- GenreId for Rock is 1
+ORDER BY Name ASC;
+            </pre>
+        </article>
+    </section>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combine and Optimize Queries in Practice</title>
+</head>
+<body>
+    <h1>Combine and Optimize Queries in Practice</h1>
+    <section aria-label="Overview">
+        <h2>Overview</h2>
+        <p>In this activity, you will engage in practical exercises to combine and optimize SQL queries using transformations, filtering, and aliases. By applying these techniques in a real-world context with the Chinook Database, you will refine your skills and develop the ability to construct queries that are both efficient and easy to understand.</p>
+    </section>
+
+    <section aria-label="Learning Outcomes">
+        <h2>Learning Outcomes</h2>
+        <p>By the end of this activity, you will be able to combine multiple SQL techniques to optimize queries including transformations, filtering, and aliases.</p>
+    </section>
+
+    <section aria-label="Getting Started">
+        <h2>Getting Started</h2>
+        <p>Open VS Code, and connect to the Chinook database using the SQL Server. Right click on the Chinook connection to create a new query.</p>
+    </section>
+
+    <section aria-label="Tasks">
+        <h2>Tasks</h2>
+
+        <article aria-labelledby="task1">
+            <h3 id="task1">Task 1: Combining Transformations with Filtering</h3>
+            <p><strong>Objective:</strong> Practice integrating transformations, filtering, and aliases for efficient data retrieval.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Goal: Retrieve customer names and invoices for those who have spent over $40.</li>
+                    <li>Copy the following starter code and paste it into a new query.</li>
+                    <li>Complete the query using the SUM() function for transformation, HAVING for filtering aggregations, and aliases for readability.</li>
+                </ol>
+                <pre><code>-- Task 1: Combining Transformations with Filtering
+-- This query retrieves the names of customers who have spent more than $40 in total,
+-- along with the total amount they spent, ordered by the total spent in descending order.
+
+-- In the SELECT statement concatenate the FirstName and LastName to get the full name of the customer.
+-- Then, get the total spent by each customer using SUM.
+-- Join the Invoice table to get the total spent by each customer.
+-- Group the results by the customer's first and last name to aggregate the total spent.
+-- Filter the results to include only those customers who have spent more than $40.
+-- Order the results by TotalSpent in descending order to see the highest spenders first.</code></pre>
+                <p>Tip: Use aliases throughout to keep yourself organized.</p>
+            </div>
+            <h4>Task 1 Solution:</h4>
+            <pre><code>SELECT CONCAT(c.FirstName, ' ', c.LastName) AS CustomerName,
+SUM(i.Total) AS TotalSpent
+FROM Customer c
+JOIN Invoice i ON c.CustomerId = i.CustomerId
+GROUP BY c.FirstName, c.LastName
+HAVING SUM(i.Total) > 40
+ORDER BY TotalSpent DESC;</code></pre>
+        </article>
+
+        <article aria-labelledby="task2">
+            <h3 id="task2">Task 2: Optimize a Music Report</h3>
+            <p><strong>Objective:</strong> Reinforce skills in using SQL techniques to focus on specific datasets, enhancing query efficiency.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Goal: Identify each artist and the total number of their tracks in the 'Rock' genre, using aliases for clarity.</li>
+                    <li>Copy the following starter code and paste it into a new query.</li>
+                    <li>Complete the query that combines filtering by genre and counting tracks.</li>
+                </ol>
+                <pre><code>-- This query retrieves the number of Rock tracks for each artist, ordered by the count of Rock tracks in descending order.
+
+-- Select the Artist's name and the count of Rock tracks.
+-- Join the Album and Track tables to filter by Genre.
+-- Join the Track table to get the Genre information.
+-- Join the Genre table to filter by the 'Rock' genre.
+-- Filter to include only tracks that belong to the 'Rock' genre.
+-- Group the results by the Artist's name to aggregate the count of Rock tracks.
+-- Order the results by the count of Rock tracks in descending order to see the artists with the most Rock tracks first.</code></pre>
+                <p>Tip: Test smaller portions of your query to validate that they work before combining them into a complex query.</p>
+            </div>
+            <h4>Task 2 Solution:</h4>
+            <pre><code>SELECT ar.Name AS ArtistName,
+       COUNT(t.TrackId) AS RockTracks
+FROM Artist ar
+JOIN Album al ON ar.ArtistId = al.ArtistId
+JOIN Track t ON al.AlbumId = t.AlbumId
+JOIN Genre g ON t.GenreId = g.GenreId
+WHERE g.Name = 'Rock'
+GROUP BY ar.Name
+ORDER BY RockTracks DESC;</code></pre>
+        </article>
+
+        <article aria-labelledby="task3">
+            <h3 id="task3">Task 3: Financial Summary Report</h3>
+            <p><strong>Objective:</strong> Practice creating refined reports by combining transformation, filtering, and aliasing techniques.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Goal: Create a financial report listing the top 10 albums by total sales. Use transformations and filters effectively.</li>
+                    <li>Copy the following starter code and paste it into a new query.</li>
+                    <li>Complete the query with appropriate SQL transformations and aggregate functions.</li>
+                </ol>
+                <pre><code>-- This query retrieves the top 10 albums by sales, ordered by the total sales in descending order.
+
+-- In the select statement, get the top 10 Album titles and the total sales for each album.
+-- Join the InvoiceLine table to get the sales information for each track in the album.
+-- Join the Invoice table to ensure we are only considering invoices that have been paid.
+-- Group the results by the Album title to aggregate the total sales for each album.
+-- Order the results by AlbumSales in descending order to see the albums with the highest sales first.</code></pre>
+                <p>Tip: Use TOP to get the top 10 album titles.</p>
+            </div>
+            <h4>Task 3 Solution:</h4>
+            <pre><code>SELECT TOP 10 al.Title AS AlbumTitle,
+       SUM(il.UnitPrice * il.Quantity) AS AlbumSales
+FROM Album al
+JOIN InvoiceLine il ON al.AlbumId = il.TrackId
+JOIN Invoice i ON il.InvoiceId = i.InvoiceId
+GROUP BY al.Title
+ORDER BY AlbumSales DESC;</code></pre>
+        </article>
+    </section>
+
+    <section aria-label="Summary">
+        <h2>Summary</h2>
+        <p>In this activity you combined advanced techniques to create powerful and precise SQL queries. Through practice, reflection, and feedback, you will strengthen your command over advanced querying techniques essential for effective data manipulation.</p>
+    </section>
+
+    <section aria-label="Key Points">
+        <h2>Key Points</h2>
+        <p>Combining transformations, filtering, and aliases create powerful data insights.</p>
+    </section>
+</body>
+</html>

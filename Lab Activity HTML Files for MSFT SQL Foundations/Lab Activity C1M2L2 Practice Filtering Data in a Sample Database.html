@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Filtering Data in a Sample Database</title>
+</head>
+<body>
+    <header>
+        <h1>Practice Filtering Data in a Sample Database</h1>
+        <p>This hands-on activity strengthens your skills in filtering data using the SQL WHERE clause in a practical environment. By engaging with the Chinook Database, you will practice constructing queries that apply conditional logic to retrieve specified data sets.</p>
+    </header>
+
+    <section>
+        <h2>Learning Outcomes</h2>
+        <ul>
+            <li>Filter data using the WHERE clause in SQL.</li>
+            <li>Extract specific data using comparison operators.</li>
+            <li>Use logical operators to refine query outputs.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Getting Started</h2>
+        <p>Open Visual Studio Code (VS Code) and connect to the Chinook database using the SQL Server extension. Right-click on the Chinook connection to create a new query.</p>
+    </section>
+
+    <section>
+        <h2>Tasks</h2>
+
+        <article>
+            <h3>Task 1: Retrieve the first and last name of customers located in Berlin</h3>
+            <p><strong>Objective:</strong> Use the WHERE clause to filter records based on specific criteria.</p>
+            <p><strong>Steps:</strong></p>
+            <ul>
+                <li>Write a query using the WHERE clause to filter customers who live in Berlin.</li>
+            </ul>
+            <pre><code>
+-- Task 1 Solution
+SELECT FirstName, LastName
+FROM Customer
+WHERE City = 'Berlin';
+            </code></pre>
+        </article>
+
+        <article>
+            <h3>Task 2: Extract tracks which are more expensive than $0.99</h3>
+            <p><strong>Objective:</strong> Use comparison operators to filter records based on specific criteria.</p>
+            <p><strong>Steps:</strong></p>
+            <ul>
+                <li>Write a query using the WHERE clause to extract all the tracks from the Track table with a UnitPrice greater than $0.99.</li>
+            </ul>
+            <p><strong>Tip:</strong> The greater-than symbol (>) will result in all tracks costing $1 or more. To also include tracks costing $0.99, use the greater-than-or-equal-to symbol (>=).</p>
+            <pre><code>
+-- Task 2 Solution
+SELECT Name, UnitPrice
+FROM Track
+WHERE UnitPrice > 0.99;
+            </code></pre>
+        </article>
+
+        <article>
+            <h3>Task 3: Identify customers who are located in either Paris or Rome</h3>
+            <p><strong>Objective:</strong> Practice combining conditions with logical operators.</p>
+            <p><strong>Steps:</strong></p>
+            <ul>
+                <li>Formulate a query using the WHERE clause and the OR operator to encompass both cities, Paris or Rome.</li>
+            </ul>
+            <pre><code>
+-- Task 3 Solution
+SELECT FirstName, LastName, Country
+FROM Customer
+WHERE City = 'Paris' OR City = 'Rome';
+            </code></pre>
+        </article>
+
+        <article>
+            <h3>Task 4: Find all the invoice details for customers in Toronto with an invoice total between $5 and $10</h3>
+            <p><strong>Objective:</strong> Integrate advanced filtering techniques to retrieve specific data subsets.</p>
+            <p><strong>Steps:</strong></p>
+            <ul>
+                <li>Use the BETWEEN and AND operators to create combined conditions for data output.</li>
+            </ul>
+            <pre><code>
+-- Task 4 Solution
+SELECT *
+FROM Invoice
+WHERE Total BETWEEN 5 AND 10
+AND BillingCity = 'Toronto';
+            </code></pre>
+        </article>
+    </section>
+
+    <section>
+        <h2>Summary</h2>
+        <p>In this activity, you explored more advanced filtering skills by combining operators with the WHERE clause, enabling you to retrieve specific data subsets. Through practice, reflection, and feedback, you will strengthen your command over basic querying techniques essential for effective data manipulation.</p>
+    </section>
+
+    <section>
+        <h2>Key Points</h2>
+        <p>SQL queries can result in refined datasets when filtered using operators, resulting in more useful data outputs.</p>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifying and Dropping Views in Practice</title>
+</head>
+<body>
+    <h1>Modifying and Dropping Views in Practice</h1>
+    <section aria-label="Overview">
+        <h2>Overview</h2>
+        <p>Refine your SQL skills by working with existing views in the Chinook database. You’ll practice updating a view to reflect new business logic and removing a view that’s no longer needed—essential tasks in maintaining a clean, effective database structure.</p>
+    </section>
+
+    <section aria-label="Learning Outcomes">
+        <h2>Learning Outcomes</h2>
+        <p>By the end of this activity, you will be able to:</p>
+        <ul>
+            <li>Modify SQL views to adapt to evolving business requirements.</li>
+            <li>Drop SQL views that are no longer needed.</li>
+            <li>Improve the accuracy and performance of your database environment.</li>
+        </ul>
+    </section>
+
+    <section aria-label="Getting Started">
+        <h2>Getting Started</h2>
+        <p>Open VS Code, and connect to the Chinook database using the SQL Server. Right click on the Chinook connection to create a new query.</p>
+    </section>
+
+    <section aria-label="Tasks">
+        <h2>Tasks</h2>
+
+        <article aria-labelledby="task1">
+            <h3 id="task1">Task 1: Create a View for Customer Invoice Summaries</h3>
+            <p><strong>Objective:</strong> Create a view summarizing invoice activity by customer.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Using the following starter code, write a query to create a view summarizing invoice activity by customer including:</li>
+                    <ul>
+                        <li>Customer First Name</li>
+                        <li>Customer Last Name</li>
+                        <li>Total Number of Invoices</li>
+                        <li>Total Amount Spent</li>
+                    </ul>
+                    <li>The data should come from the Customer and Invoice tables and be grouped by the customer’s first and last name.</li>
+                </ol>
+                <pre><code>-- 1. Create a view named 'View_CustomerInvoices' that summarizes customer invoice data.
+
+-- 2. Select the following columns to be included in the view:
+--    a. Customer's first name as an alias.
+--    b. Customer's last name as an alias.
+--    c. Total number of invoices for each customer as an alias.
+--    d. Total amount spent by each customer as an alias.
+
+-- 3. Use a JOIN clause to combine data from the 'Customer' table and the 'Invoice' table.
+
+-- 4. Group the results by the customer's first and last name to aggregate the data for each customer.</code></pre>
+                <p>Test Your Work:</p>
+                <pre><code>SELECT * FROM View_CustomerInvoices;
+ORDER BY -- Select the aliased columns.</code></pre>
+                <p>Expected Output: A list with columns showing customer names, total number of invoices, and total amount spent.</p>
+            </div>
+            <h4>Task 1 Solution:</h4>
+            <pre><code>CREATE VIEW View_CustomerInvoices AS
+SELECT c.FirstName AS CustomerFirstName,
+    c.LastName AS CustomerLastName,
+    COUNT(i.InvoiceId) AS TotalInvoices,
+    SUM(i.Total) AS TotalAmountSpent
+FROM Customer c
+JOIN Invoice i ON c.CustomerId = i.CustomerId
+GROUP BY c.FirstName, c.LastName;
+GO
+
+SELECT * FROM View_CustomerInvoices
+ORDER BY CustomerFirstName, CustomerLastName;
+GO</code></pre>
+        </article>
+
+        <article aria-labelledby="task2">
+            <h3 id="task2">Task 2: Modify the View to Focus on Companies (Exclude NULLs)</h3>
+            <p><strong>Objective:</strong> Update the view to focus on companies and exclude records where the Company field is null.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Use the ALTER VIEW statement to update View_CustomerInvoices.</li>
+                    <li>Add a WHERE clause to exclude NULL values in the Company column.</li>
+                    <li>Replace the grouping by first/last name with grouping by the company column.</li>
+                </ol>
+                <pre><code>-- 1. Alter the existing view 'View_CustomerInvoices' to focus on company data.
+
+-- 2. Select the following columns to be included in the view:
+--    a. Customer's company name as an alias.
+--    b. Total number of invoices for each company as an alias.
+--    c. Total amount spent by each company as an alias.
+
+-- 3. Use a JOIN clause to combine data from the 'Customer' table and the 'Invoice' table.
+
+-- 4. Exclude rows where the company name is NULL.
+
+-- 5. Group the results by the company name to aggregate the data for each company.</code></pre>
+                <p>Test Your Work:</p>
+                <pre><code>SELECT * FROM View_CustomerInvoices
+ORDER BY -- Select the aliased column.</code></pre>
+                <p>Expected Output: A list of companies with columns showing the total number of invoices and total amount spent.</p>
+            </div>
+            <h4>Task 2 Solution:</h4>
+            <pre><code>ALTER VIEW View_CustomerInvoices AS
+SELECT c.Company,
+    COUNT(i.InvoiceId) AS TotalInvoices,
+    SUM(i.Total) AS TotalAmountSpent
+FROM Customer c
+JOIN Invoice i ON c.CustomerId = i.CustomerId
+WHERE c.Company IS NOT NULL
+GROUP BY c.Company;
+GO
+
+SELECT * FROM View_CustomerInvoices
+ORDER BY TotalAmountSpent DESC;
+GO</code></pre>
+        </article>
+
+        <article aria-labelledby="task3">
+            <h3 id="task3">Task 3: Drop the View When It’s No Longer Needed</h3>
+            <p><strong>Objective:</strong> Remove the view from the database once it’s no longer needed.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Use the DROP VIEW command to remove the View_CustomerInvoices view.</li>
+                </ol>
+                <pre><code>DROP VIEW -- Add the view here.</code></pre>
+                <p>Test Your Work:</p>
+                <pre><code>SELECT * FROM View_CustomerInvoices;</code></pre>
+                <p>Expected Output: An error message indicating that the view isn’t a valid object.</p>
+                <p>Invalid object name 'View_CustomerInvoices'.</p>
+            </div>
+            <h4>Task 3 Solution:</h4>
+            <pre><code>DROP VIEW View_CustomerInvoices;
+GO</code></pre>
+        </article>
+    </section>
+
+    <section aria-label="Success Checklist">
+        <h2>Success Checklist</h2>
+        <ul>
+            <li>Created a view summarizing customer invoice activity</li>
+            <li>Modified the view to focus on companies and exclude NULL values</li>
+            <li>Dropped the view as part of database maintenance</li>
+        </ul>
+    </section>
+
+    <section aria-label="Common Issues & Solutions">
+        <h2>Common Issues & Solutions</h2>
+        <ul>
+            <li><strong>Problem:</strong> Errors in modifying the view<br>
+                <strong>Solution:</strong> Double-check your ALTER VIEW syntax and ensure all columns used in the view are properly referenced.</li>
+            <li><strong>Problem:</strong> Unable to drop the view<br>
+                <strong>Solution:</strong> Ensure the view name is correct and that you have sufficient permissions.</li>
+        </ul>
+    </section>
+
+    <section aria-label="Summary">
+        <h2>Summary</h2>
+        <p>Modifying and dropping SQL views are key skills in maintaining an effective database structure. This activity has provided practice in adapting views to meet new business needs and cleaning up outdated structures.</p>
+    </section>
+
+    <section aria-label="Key Points">
+        <h2>Key Points</h2>
+        <ul>
+            <li>Modifying views allows you to adjust to changing requirements.</li>
+            <li>Dropping views removes obsolete structures and clears up database space.</li>
+        </ul>
+    </section>
+</body>
+</html>

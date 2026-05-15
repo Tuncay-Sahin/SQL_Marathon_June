@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implement AI-assisted SQL Queries</title>
+</head>
+<body>
+    <h1>Implement AI-assisted SQL Queries</h1>
+    <section aria-label="Overview">
+        <h2>Overview</h2>
+        <p>In this activity, you will engage in a hands-on experience using GitHub Copilot by Microsoft to create and optimize SQL queries. This interactive exercise is designed to demonstrate how generative AI can assist in making SQL query writing more efficient and effective. By comparing AI-generated queries to manually written ones, you will gain insight into the capabilities and efficiency of using AI tools in SQL database management.</p>
+    </section>
+    
+    <section aria-label="Getting Started">
+        <h2>Getting Started</h2>
+        <p>Open VS Code, and connect to the Chinook database using the SQL Server. Ensure you’re signed into GitHub and the Copilot integration is active. Right click on the Chinook connection to create a new query.</p>
+    </section>
+    
+    <section aria-label="Tasks">
+        <h2>Tasks</h2>
+
+        <article aria-labelledby="task1">
+            <h3 id="task1">Task 1: Basic Query Generation with Copilot</h3>
+            <p><strong>Objective:</strong> Formulate a query retrieving track names for all tracks in the Track table where the genre is ‘Rock’.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Start with a SELECT statement and observe Copilot’s suggestions for completing your query.</li>
+                    <li>Compare the AI-generated query with your manually written attempt.</li>
+                    <li>Tip: Pay attention to how Copilot suggests completing the query.</li>
+                    <li>Test Your Work: Check if the query returns the expected track names for the ‘Rock’ genre.</li>
+                </ol>
+            </div>
+            <h4>Task 1 Solution:</h4>
+            <pre><code>SELECT Name
+FROM Track
+WHERE GenreId = (
+    SELECT GenreId
+    FROM Genre
+    WHERE Name = 'Rock'
+);</code></pre>
+        </article>
+
+        <article aria-labelledby="task2">
+            <h3 id="task2">Task 2: Applying Filtering and Sorting</h3>
+            <p><strong>Steps:</strong></p>
+            <ol>
+                <li>Copy the following starter code.</li>
+                <li>Complete the SELECT statement on the Customer table using an alias.</li>
+                <li>Create a JOIN on the Invoice table using an alias.</li>
+                <li>Let Copilot assist in what columns to join.</li>
+                <li>In the SELECT statement begin adding the columns and let Copilot assist with adding the columns and syntax.</li>
+                <li>Then, let Copilot assist with optimizing the query by adding a WHERE clause to filter the results based on a specific condition, and the ORDER BY clause to sort the results.</li>
+                <li>Analyze differences between the AI-generated and manual queries.</li>
+                <pre><code>SELECT
+FROM
+JOIN
+WHERE
+ORDER BY</code></pre>
+                <li>Tip: Notice how Copilot helps structure the query.</li>
+                <li>Test Your Work: Output should show the invoice details sorted by purchase date.</li>
+            </ol>
+            <h4>Task 2 Solution:</h4>
+            <pre><code>SELECT
+    c.FirstName AS CustomerFirstName,
+    c.LastName AS CustomerLastName,
+    i.InvoiceId,
+    i.InvoiceDate,
+    i.Total
+FROM
+    Customer c
+JOIN
+    Invoice i ON c.CustomerId = i.CustomerId
+WHERE i.Total > 10 
+ORDER BY i.InvoiceDate DESC;</code></pre>
+        </article>
+
+        <article aria-labelledby="task3">
+            <h3 id="task3">Task 3: Complex Query Optimization</h3>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Copy the following starter code.</li>
+                    <li>Construct a manual query to list artists, albums, and their total sales figures in descending order. Use Copilot to make suggestions.</li>
+                    <li>Evaluate the AI-generated query for completeness and efficiency.</li>
+                    <pre><code>SELECT
+ar.Name AS ArtistName,
+al.Title AS AlbumTitle,
+SUM
+FROM 
+JOIN 
+JOIN
+JOIN
+GROUP BY
+ORDER BY</code></pre>
+                    <li>Tip: Check the efficiency of the AI-suggested query.</li>
+                    <li>Test Your Work: Ensure the output correctly lists artist, albums, and their total sales figures in descending order.</li>
+                </ol>
+            </div>
+            <h4>Task 3 Solution:</h4>
+            <pre><code>SELECT
+    ar.Name AS ArtistName,
+    al.Title AS AlbumTitle,
+    SUM(il.UnitPrice * il.Quantity) AS TotalSales
+FROM Artist ar
+JOIN Album al ON ar.ArtistId = al.ArtistId
+JOIN Track t ON al.AlbumId = t.AlbumId
+JOIN InvoiceLine il ON t.TrackId = il.TrackId
+GROUP BY ar.Name, al.Title
+ORDER BY TotalSales DESC;</code></pre>
+        </article>
+    </section>
+    
+    <section aria-label="Success Checklist">
+        <h2>Success Checklist</h2>
+        <ul>
+            <li>AI-generated query successfully retrieves track names for the ‘Rock’ genre.</li>
+            <li>Invoice details for customers are correctly filtered and sorted.</li>
+            <li>Detailed report of artists and albums with total sales sorted in descending order.</li>
+            <li>Reflection on efficiency and reliability of AI assists in SQL query writing.</li>
+        </ul>
+    </section>
+
+    <section aria-label="Common Issues & Solutions">
+        <h2>Common Issues & Solutions</h2>
+        <ul>
+            <li><strong>Problem:</strong> Ambiguous column references in joins.<br><strong>Solution:</strong> Ensure proper use of table aliases and qualify column names.</li>
+            <li><strong>Problem:</strong> AI suggestions do not meet requirements.<br><strong>Solution:</strong> Double-check and refine the query, combining manual adjustments with AI suggestions.</li>
+        </ul>
+    </section>
+
+    <section aria-label="Summary">
+        <h2>Summary</h2>
+        <p>Leveraging AI tools like GitHub Copilot by Microsoft can greatly enhance the efficiency and accuracy of SQL query writing. While AI can assist in generating and optimizing queries, it is important to validate and modify AI-generated code to fit specific needs accurately.</p>
+    </section>
+
+    <section aria-label="Key Points">
+        <h2>Key Points</h2>
+        <ul>
+            <li>AI tools can streamline the generation of SQL queries, saving time and effort.</li>
+            <li>Manual validation and adjustments ensure the accuracy and relevance of AI suggestions.</li>
+            <li>Reflecting on the use of AI can provide insights into optimizing SQL query management.</li>
+        </ul>
+    </section>
+</body>
+</html>

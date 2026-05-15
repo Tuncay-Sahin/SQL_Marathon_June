@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessing GitHub Copilot by Microsoft</title>
+</head>
+<body>
+    <h1>Accessing GitHub Copilot by Microsoft</h1>
+    
+    <section aria-label="Overview">
+        <h2>Overview</h2>
+        <p>In this activity, you will connect GitHub Copilot to the Chinook database in your VS Code environment.</p>
+    </section>
+    
+    <section aria-label="Getting Started">
+        <h2>Getting Started</h2>
+        <p>Open VS Code, and follow the instructions to set up GitHub Copilot.</p>
+    </section>
+    
+    <section aria-label="Tasks">
+        <h2>Tasks</h2>
+        
+        <article aria-labelledby="task1">
+            <h3 id="task1">Task 1: Connect GitHub Copilot</h3>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Open VS Code, then press "Ctrl + Shift + P" to open the command palette. Type "GitHub: Sign in" and press "Enter" to initiate the login process. Alternatively, you can open the side activity bar using the keyboard shortcut "Ctrl + B" to access the "Accounts" icon. Select "Sign in with GitHub" from there.</li>
+                    <li>Follow the prompts to sign into your GitHub account by entering your username and password.</li>
+                    <li>Verify your identity with multi-factor authentication if prompted for additional security.</li>
+                    <li>If an authorization prompt appears, you may need to grant access each time you log in. When the authorization window opens, navigate using your screen reader to the "Always allow vscode.dev to open links" checkbox, then tab to the "Open xdg-open" button and press "Enter".</li>
+                </ol>
+            </div>
+        </article>
+        
+        <article aria-labelledby="task2">
+            <h3 id="task2">Task 2: Confirm the Connection of GitHub Copilot with the Chinook database</h3>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Connect to the Chinook database in VS Code. Navigate to the bottom bar using the screen reader shortcuts and select "Connections". Choose the Chinook database from the list and select "New Query".</li>
+                    <li>Begin typing a standard SELECT statement in the new query window: <code>SELECT * FROM</code>.</li>
+                    <li>As you type, observe suggestions from GitHub Copilot, which will assist you in completing the query. For example, you will see suggestions for table names contained in the Chinook database such as "Customer" or "Invoice".</li>
+                    <li>Select the desired table name, such as "Customer", and continue typing. GitHub Copilot will provide suggestions for the next parts of the query.</li>
+                    <li>To filter customers by country and city, type the following statement, then press "Tab" to accept the auto-completion provided by Copilot:</li>
+                </ol>
+                <pre><code>SELECT *
+FROM Customer
+WHERE Country = 'USA' AND City = 'Redmond';</code></pre>
+            </div>
+        </article>
+        
+    </section>
+    
+    <section aria-label="Common Issues & Solutions">
+        <h2>Common Issues & Solutions</h2>
+        <ul>
+            <li><strong>Problem:</strong> I don’t have a GitHub account. How do I get one?<br><strong>Solution:</strong> Go to GitHub and sign up. You can follow these steps to set up an account.</li>
+            <li><strong>Problem:</strong> I’m using a Mac and can’t click on the Chinook database to get “New Query”.<br><strong>Solution:</strong> Use two fingers, tap on the touchpad, and select “New Query”.</li>
+            <li><strong>Problem:</strong> I don’t see any suggestions from Copilot as I type.<br><strong>Solution:</strong> Ensure you have created a GitHub account and are signed into VS Code.</li>
+        </ul>
+    </section>
+    
+    <section aria-label="Summary">
+        <h2>Summary</h2>
+        <p>In this activity you connected GitHub Copilot by Microsoft to the Chinook database in the VS Code environment, then tested it out to confirm it is operating correctly. The next video will take you through using Copilot step-by-step, and then you will try it out yourself in a following activity.</p>
+    </section>
+</body>
+</html>

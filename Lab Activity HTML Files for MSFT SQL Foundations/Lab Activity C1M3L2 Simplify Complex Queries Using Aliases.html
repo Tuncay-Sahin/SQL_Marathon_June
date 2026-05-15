@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplify Complex Queries Using Aliases</title>
+</head>
+<body>
+    <h1>Simplify Complex Queries Using Aliases</h1>
+    <section aria-label="Overview">
+        <h2>Overview</h2>
+        <p>In this activity, you will engage in hands-on practice simplifying complex SQL queries using aliases. By transforming lengthy query expressions into concise and interpretable formats, you will develop the ability to enhance query readability and efficiency. This exercise reinforces understanding of how aliases can serve as powerful tools to streamline SQL code.</p>
+    </section>
+
+    <section aria-label="Learning Outcomes">
+        <h2>Learning Outcomes</h2>
+        <p>By the end of this activity, you will be able to:</p>
+        <ul>
+            <li>Use column aliases to simplify output and improve readability.</li>
+            <li>Use table aliases to manage joins and increase query clarity.</li>
+            <li>Combine aliases with functions to present data more effectively.</li>
+            <li>Improve the efficiency and maintainability of your SQL code.</li>
+        </ul>
+    </section>
+
+    <section aria-label="Getting Started">
+        <h2>Getting Started</h2>
+        <p>Open VS Code, and connect to the Chinook database using the SQL Server. Right click on the Chinook connection to create a new query.</p>
+    </section>
+
+    <section aria-label="Tasks">
+        <h2>Tasks</h2>
+
+        <article aria-labelledby="task1">
+            <h3 id="task1">Task 1: Simplifying Column References</h3>
+            <p><strong>Objective:</strong> Reinforce how column aliases improve readability by creating easy-to-understand headers.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Copy the following starter code and paste it into a new query.</li>
+                    <li>Combine customers’ FirstName and LastName into a single column named FullName.</li>
+                    <li>Use the CONCAT function and apply a column alias to name the combined field.</li>
+                    <li>Include the Email field in your result.</li>
+                </ol>
+                <pre><code>SELECT 
+    -- Combine first and last name into a single column as the full name,
+    -- Include the email column
+FROM -- Your code here.</code></pre>
+                <p>Tip: Use AS to assign a clear name to your new column.</p>
+                <p>Test Your Work: Run the query and check the output headers.</p>
+                <p>Expected Output: A list with columns named FullName and Email.</p>
+            </div>
+            <h4>Task 1 Solution:</h4>
+            <pre><code>SELECT CONCAT(FirstName, ' ', LastName) AS FullName, Email
+FROM Customer;</code></pre>
+        </article>
+
+        <article aria-labelledby="task2">
+            <h3 id="task2">Task 2: Utilizing Table Aliases for Clarity</h3>
+            <p><strong>Objective:</strong> Use table aliases to distinguish between multiple occurrences of the same table in a query.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Copy the following starter code and paste it into a new query.</li>
+                    <li>Retrieve the track name, album title, and composer's name.</li>
+                    <li>Use table aliases like t for Track and al for Album.</li>
+                    <li>Assign column aliases to make the result clearer.</li>
+                </ol>
+                <pre><code>-- Write a query to retrieve the track's name, album title, and composer's name using aliases for clarity.
+SELECT -- Use aliases for the Name and Title columns
+ -- Your code here.
+FROM -- Your code here.
+-- Joining with the Album table to get the album title
+JOIN -- Your code here.</code></pre>
+                <p>Tip: Use short, intuitive table aliases when working with joins.</p>
+                <p>Test Your Work: Output should show TrackName, AlbumTitle, and Composer columns.</p>
+            </div>
+            <h4>Task 2 Solution:</h4>
+            <pre><code>SELECT -- Using aliases for the columns
+    t.Name AS TrackName,
+    al.Title AS AlbumTitle,
+    t.Composer
+FROM Track t
+JOIN Album al ON t.AlbumID = al.AlbumID;</code></pre>
+        </article>
+
+        <article aria-labelledby="task3">
+            <h3 id="task3">Task 3: Enhancing Query Efficiency</h3>
+            <p><strong>Objective:</strong> Use aliases to simplify complex query expressions, promoting cleaner and more efficient SQL code.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Copy the following starter code and paste it into a new query.</li>
+                    <li>Create a FullName column by combining customer names.</li>
+                    <li>Retrieve the invoice date and total with an alias for the Invoice table.</li>
+                    <li>Join the Customer and Invoice tables using a table alias.</li>
+                    <li>Show InvoiceDate and total amount as InvoiceTotal, using aliases.</li>
+                </ol>
+                <pre><code>-- Write a query to retrieve the full name of customers along with their invoice date and total.
+SELECT 
+-- In the SELECT statement concatenate the first and last name from the Customer table and use an alias for clarity.
+-- Retrieve the invoice date with an alias for the Invoice table
+-- Retrieve the total from the Invoice table with an alias.
+FROM -- Your code here.
+-- Join the Invoice table to get the invoice details.
+JOIN -- Your code here.</code></pre>
+                <p>Tip: Use meaningful names for derived fields to improve report clarity.</p>
+                <p>Test Your Work: Output should contain FullName, InvoiceDate, and InvoiceTotal columns.</p>
+            </div>
+            <h4>Task 3 Solution:</h4>
+            <pre><code>SELECT
+    CONCAT(c.FirstName, ' ', c.LastName) AS FullName,
+    i.InvoiceDate,
+    i.Total AS InvoiceTotal
+FROM Customer c
+JOIN Invoice i ON c.CustomerId = i.CustomerId;</code></pre>
+        </article>
+
+        <article aria-labelledby="task4">
+            <h3 id="task4">Task 4: Combining Aliases with Functions</h3>
+            <p><strong>Objective:</strong> Strengthen skills by combining SQL functions with aliases for succinct data presentation.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Copy the following starter code and paste it into a new query.</li>
+                    <li>Retrieve the mediatype name as an alias.</li>
+                    <li>Calculate the average track length in minutes: divide Milliseconds by 60000 and round to two decimal places.</li>
+                    <li>Join Track and MediaType tables.</li>
+                    <li>Group by media type name.</li>
+                    <li>Assign meaningful aliases to both the media type and the calculated average.</li>
+                </ol>
+                <pre><code>-- Write a query to retrieve the average track length in minutes for each media type.
+SELECT
+    -- Select the media type name and calculate the average track length in minutes
+    -- Use the ROUND function to format the average in minutes
+    -- Use an alias for clarity
+FROM -- Your code here.
+-- Join the MediaType table to get the media type names.
+JOIN -- Your code here.
+-- Group by the media type to get the average for each type
+GROUP BY -- Your code here.</code></pre>
+                <p>Tip: Use ROUND() to control decimal precision in your output.</p>
+                <p>Test Your Work: Output should show two columns: MediaType and AvgTrackLengthInMinutes.</p>
+            </div>
+            <h4>Task 4 Solution:</h4>
+            <pre><code>SELECT
+    m.Name AS MediaType,
+    ROUND(AVG(t.Milliseconds) / 60000, 2) AS AvgTrackLengthInMinutes
+FROM Track t
+JOIN MediaType m ON t.MediaTypeId = m.MediaTypeId
+GROUP BY m.Name;</code></pre>
+        </article>
+    </section>
+
+    <section aria-label="Success Checklist">
+        <h2>Success Checklist</h2>
+        <ul>
+            <li>Combined names into a readable FullName column using aliases.</li>
+            <li>Used table aliases to simplify joins and improve clarity.</li>
+            <li>Displayed invoice details clearly with readable headers.</li>
+            <li>Calculated and displayed rounded averages with aliases.</li>
+            <li>No syntax errors, correct outputs returned.</li>
+        </ul>
+    </section>
+
+    <section aria-label="Common Issues & Solutions">
+        <h2>Common Issues & Solutions</h2>
+        <ul>
+            <li><strong>Problem:</strong> Ambiguous column names in joins.<br>
+                <strong>Solution:</strong> Always use table aliases when referencing columns from multiple tables.</li>
+            <li><strong>Problem:</strong> Aliases not applied or showing in output.<br>
+                <strong>Solution:</strong> Ensure you're using AS and that the syntax is correct.</li>
+            <li><strong>Problem:</strong> Division or rounding errors.<br>
+                <strong>Solution:</strong> Double-check your mathematical operations and parentheses.</li>
+        </ul>
+    </section>
+
+    <section aria-label="Summary">
+        <h2>Summary</h2>
+        <p>Aliases in SQL are small but powerful tools that dramatically improve readability and collaboration. Whether combining columns, simplifying joins, or naming calculated values, the smart use of aliases leads to clearer, more maintainable SQL.</p>
+    </section>
+
+    <section aria-label="Key Points">
+        <h2>Key Points</h2>
+        <ul>
+            <li>Column aliases improve the readability of output.</li>
+            <li>Table aliases make multi-table queries more manageable.</li>
+            <li>Aliases are especially useful in complex expressions and reports.</li>
+        </ul>
+    </section>
+</body>
+</html>

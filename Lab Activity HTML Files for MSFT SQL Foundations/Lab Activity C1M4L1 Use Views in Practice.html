@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use Views in Practice</title>
+</head>
+<body>
+    <h1>Use Views in Practice</h1>
+    <section aria-label="Overview">
+        <h2>Overview</h2>
+        <p>In this activity, you will explore the concept of views to simplify complex query logic and enhance data presentation. By applying these techniques in a real-world context with the Chinook Database, you will refine your skills and develop the ability to construct queries that are both efficient and easy to understand.</p>
+    </section>
+
+    <section aria-label="Learning Outcomes">
+        <h2>Learning Outcomes</h2>
+        <p>By the end of this activity, you will be able to:</p>
+        <ul>
+            <li>Create SQL views to summarize data.</li>
+            <li>Consider how views help manage complex, repeated queries.</li>
+            <li>Extract relevant insights from a view.</li>
+        </ul>
+    </section>
+
+    <section aria-label="Getting Started">
+        <h2>Getting Started</h2>
+        <p>Open VS Code, and connect to the Chinook database using the SQL Server. Right click on the Chinook connection to create a new query.</p>
+    </section>
+
+    <section aria-label="Tasks">
+        <h2>Tasks</h2>
+
+        <article aria-labelledby="task1">
+            <h3 id="task1">Task 1: Design a Customer Spending Overview View</h3>
+            <p><strong>Objective:</strong> Create a view which summarizes simple data.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Copy the following starter code and paste it into a new query.</li>
+                    <li>Complete the view summarizing customer invoice data using the Customer and Invoice tables. The results should show the customer's first name, last name, the total number of invoices, and the total amount spent for each customer.</li>
+                    <li>Group the view by first and last name in ascending order.</li>
+                </ol>
+                <pre><code>-- This code creates a SQL View named 'View_CustomerInvoices' that provides a summary of customer invoice data.
+-- 1. Define the view name as 'View_CustomerInvoices' using the CREATE VIEW statement.
+-- 2. Select the following columns to be included in the view:
+--    a. Customer's first name as an alias.
+--    b. Customer's last name as an alias.
+--    c. Total number of invoices for each customer using COUNT on InvoiceId, as an alias.
+--    d. Total amount spent by each customer using SUM on the 'Total' column, as an alias.
+-- 3. Use a JOIN clause to combine data from the 'Customer' table and the 'Invoice' table.
+-- 4. Group the results by the customer's first and last name to aggregate the data for each customer.</code></pre>
+                <p>Tip: Create the SELECT query first and run it to make sure you're getting the right data. Once you're confident, wrap it in a CREATE VIEW statement.</p>
+            </div>
+            <h4>Task 1 Solution:</h4>
+            <pre><code>CREATE VIEW View_CustomerInvoices AS
+SELECT c.FirstName AS CustomerFirstName,
+    c.LastName AS CustomerLastName,
+    COUNT(i.InvoiceId) AS TotalInvoices,
+    SUM(i.Total) AS TotalAmountSpent
+FROM Customer c
+JOIN Invoice i ON c.CustomerId = i.CustomerId
+GROUP BY c.FirstName, c.LastName;
+GO</code></pre>
+        </article>
+
+        <article aria-labelledby="task2">
+            <h3 id="task2">Task 2: Design a Detailed Invoice View</h3>
+            <p><strong>Objective:</strong> Consider how views help manage complex queries.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Use the following starter code to develop a view that encapsulates the invoice details (track, price, unit price, quantity, and total cost) for each country and date. Use the Invoice and InvoiceLine tables.</li>
+                </ol>
+                <pre><code>-- This code creates a SQL View named 'View_InvoiceDetails' that provides detailed information about invoices.
+-- 1. Define the view name as 'View_InvoiceDetails' using the CREATE VIEW statement.
+-- 2. Select the following columns to be included in the view:
+--    a. Invoice ID
+--    b. Invoice date
+--    c. Billing country
+--    d. Track ID
+--    e. Unit price
+--    f. Quantity of the track purchased.
+--    g. The total calculated as from the 'InvoiceLine' table, as an alias.
+-- 3. Use a JOIN clause to combine data from the 'Invoice' table and the 'InvoiceLine' table.
+-- 4. Join with the 'InvoiceLine' table to get detailed information about each invoice's line items.</code></pre>
+            </div>
+            <h4>Task 2 Solution:</h4>
+            <pre><code>CREATE VIEW View_InvoiceDetails AS
+SELECT i.InvoiceId,
+    i.InvoiceDate,
+    i.BillingCountry,
+    il.TrackId,
+    il.UnitPrice,
+    il.Quantity,
+    (il.UnitPrice * il.Quantity) AS LineTotal
+FROM Invoice i
+JOIN InvoiceLine il ON i.InvoiceId = il.InvoiceId;
+GO</code></pre>
+        </article>
+
+        <article aria-labelledby="task3">
+            <h3 id="task3">Task 3: Query the Views to Extract Information</h3>
+            <p><strong>Objective:</strong> Consider how views help manage repeated queries, using views to extract relevant insights.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Use the starter code to query the Customer Spending view to find the top 10 spending customers by total amount paid.</li>
+                    <pre><code>-- Query the View_CustomerInvoices view to retrieve the top 10 customers by total amount spent in descending order.</code></pre>
+                    <li>Use the starter code to query the Invoice Details view to retrieve the total amount spent by country and sorted by country in descending alphabetical order.</li>
+                    <pre><code>-- Query the Invoice Details view to retrieve the total amount spent by country, and sorted the by country in descending alphabetical order.</code></pre>
+                </ol>
+            </div>
+            <h4>Task 3.1 Solution:</h4>
+            <pre><code>SELECT TOP 10 CustomerFirstName, CustomerLastName, TotalAmountSpent
+FROM View_CustomerInvoices
+ORDER BY TotalAmountSpent DESC;</code></pre>
+            <h4>Task 3.2 Solution:</h4>
+            <pre><code>SELECT BillingCountry, SUM(LineTotal) AS TotalSpending
+FROM View_InvoiceDetails
+GROUP BY BillingCountry
+ORDER BY TotalSpending DESC;</code></pre>
+        </article>
+    </section>
+
+    <section aria-label="Summary">
+        <h2>Summary</h2>
+        <p>In this activity you created and queried views to consider how you might use views to manage complex, repeated tasks and access greater insights. Through practice, reflection, and feedback, you will strengthen your command over advanced querying techniques essential for effective data manipulation.</p>
+    </section>
+
+    <section aria-label="Key Points">
+        <h2>Key Points</h2>
+        <ul>
+            <li>Views optimize efficiency and insights by encapsulating data into a simple, reusable format.</li>
+            <li>Views are especially valuable in scenarios where data requires consistent updates or repeated queries.</li>
+            <li>Views simplify the presentation of complex data, making it easier to access specific insights.</li>
+        </ul>
+    </section>
+</body>
+</html>

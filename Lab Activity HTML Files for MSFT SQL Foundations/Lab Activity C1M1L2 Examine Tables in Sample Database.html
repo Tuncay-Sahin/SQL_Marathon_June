@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examine Tables in a Sample Database</title>
+</head>
+<body>
+    <header>
+        <h1>Examine Tables in a Sample Database</h1>
+        <p>This activity is designed to provide you with practical exposure to examining database tables, exploring their structure, relationships, and the role these play in data retrieval and organization. Using the Chinook database, you will gain hands-on experience analyzing tables and their interconnections, enhancing your capability to efficiently work with relational database schemas.</p>
+    </header>
+
+    <section>
+        <h2>Learning Outcomes</h2>
+        <ul>
+            <li>Identify the structure, primary keys, and columns of tables in the Chinook database.</li>
+            <li>Explain a one-to-many relationship and its impact on data retrieval and organization.</li>
+            <li>Analyze a junction table illustrating a many-to-many relationship.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Getting Started</h2>
+        <p>Open VS Code, and connect to the Chinook database using the SQL Server extension. Right click on the Chinook connection to create a new query.</p>
+        <ol>
+            <li>Start by launching Visual Studio Code on your machine. Use the Start menu to search for "Visual Studio Code" and press Enter.</li>
+            <li>Navigate to the SQL Server extension in the side panel using the Tab key. Listen for "SQL Server icon" and press Enter to expand the side panel.</li>
+            <li>There should be an existing database connection named Chinook. Use the Tab key to navigate to the Chinook connection and press Enter to connect to the database.</li>
+            <li>Once connected to the Chinook database, you can start exploring the database as outlined in the next tasks.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>Tasks</h2>
+
+        <article>
+            <h3>Task 1: Analyze Individual Tables</h3>
+            <p><strong>Objective:</strong> Examine the structure of the Employee table, document the data types, primary keys, and foreign keys for the columns, and understand the hierarchy through the ReportsTo field.</p>
+            <ol>
+                <li>Use the SQL Server extension to locate the Employee table. Use Tab to navigate and press Enter to expand it.</li>
+                <li>Navigate to the Columns tab within the Employee table and listen as the screen reader reads the data types for each column, including whether a column is a primary or foreign key (e.g., EmployeeId, FirstName, LastName, ReportsTo).</li>
+                <li>Reflect on how the ReportsTo field establishes reporting relationships within the organization.</li>
+            </ol>
+        </article>
+
+        <article>
+            <h3>Task 2: Investigate 'Invoice' and 'Customer' Tables</h3>
+            <p><strong>Objective:</strong> Explore how the Invoice and Customer tables relate to each other.</p>
+            <ol>
+                <li>Navigate to the Columns folders for both the Invoice and Customer tables, using the Tab key and Enter key to open them.</li>
+                <li>Listen to the screen reader as it describes the CustomerId and InvoiceId relationships.</li>
+                <li>Note how a customer can have multiple invoices, illustrating a one-to-many relationship.</li>
+            </ol>
+        </article>
+
+        <article>
+            <h3>Task 3: Discover Many-to-Many Relationships with Playlists</h3>
+            <p><strong>Objective:</strong> Analyze the Playlist, PlaylistTrack, and Track tables to understand many-to-many relationships.</p>
+            <ol>
+                <li>Navigate to the column folders in the Playlist, PlaylistTrack, and Track tables. Use Tab and Enter to explore the columns.</li>
+                <li>Listen to the screen reader as it explains how the PlaylistTrack table is a junction between the Playlist and Track tables.</li>
+                <li>Reflect on how a Track can belong to multiple Playlists, demonstrating the concept of many-to-many associations.</li>
+            </ol>
+        </article>
+
+        <article>
+            <h3>Task 4: Examine Invoice Details</h3>
+            <p><strong>Objective:</strong> Analyze the Invoice and InvoiceLine tables.</p>
+            <ol>
+                <li>Navigate to the columns folders for both Invoice and InvoiceLine tables. Use the Tab key and Enter key to investigate the columns.</li>
+                <li>Listen as the screen reader describes the relationship between Invoice, which represents transaction information, and InvoiceLine, which lists each sale item.</li>
+                <li>Understand how these tables work together to provide detailed sales data.</li>
+            </ol>
+        </article>
+    </section>
+
+    <section>
+        <h2>Summary</h2>
+        <p>In this activity, you explored key structures and relationships within the Chinook database, enhancing your understanding of relational database organization and data retrieval. This foundational knowledge is essential as we will continue to use the Chinook database for learning SQL.</p>
+    </section>
+
+    <section>
+        <h2>Key Points</h2>
+        <p>Databases are collections of datasets connected through primary keys, one-to-many, and many-to-many relationships.</p>
+    </section>
+</body>
+</html>

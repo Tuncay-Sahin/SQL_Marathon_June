@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply SQL Functions to Transform Data</title>
+</head>
+<body>
+    <h1>Apply SQL Functions to Transform Data</h1>
+    <section aria-label="Overview">
+        <h2>Overview</h2>
+        <p>This hands-on activity is designed to help you harness the power of SQL functions to transform data in the Chinook Database. By applying functions such as string manipulation, mathematical calculations, and date transformations, you will develop the ability to modify and prepare raw data for meaningful analysis.</p>
+    </section>
+
+    <section aria-label="Learning Outcomes">
+        <h2>Learning Outcomes</h2>
+        <p>By the end of this activity, you will be able to:</p>
+        <ul>
+            <li>Transform and optimize data using SQL functions.</li>
+            <li>Standardize data using string functions.</li>
+            <li>Use mathematical functions to automate numeric calculations.</li>
+            <li>Enhance readability of data with date functions.</li>
+            <li>Use aggregation functions to summarize data.</li>
+        </ul>
+    </section>
+
+    <section aria-label="Getting Started">
+        <h2>Getting Started</h2>
+        <p>Open VS Code, and connect to the Chinook database using the SQL Server. Right click on the Chinook connection to create a new query.</p>
+    </section>
+
+    <section aria-label="Tasks">
+        <h2>Tasks</h2>
+
+        <article aria-labelledby="task1">
+            <h3 id="task1">Task 1: String Functions: Standardize Artists’ Names</h3>
+            <p><strong>Objective:</strong> Utilize string functions for data standardization, an essential step for uniform data presentation.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Use the following starter code and write a query to retrieve and transform all artist names to uppercase.
+                    <pre><code>-- Retrieve and transform all artists' names to uppercase. 
+SELECT -- Your code here.
+FROM -- Your code here.</code></pre></li>
+                    <li>Tip: Remember that functions are nested within the SELECT statement prior to defining FROM, filtering (WHERE), or ordering (ORDER BY).</li>
+                </ol>
+            </div>
+            <h4>Task 1 Solution:</h4>
+            <pre><code>SELECT ArtistID, UPPER(Name)
+FROM Artist;</code></pre>
+        </article>
+
+        <article aria-labelledby="task2">
+            <h3 id="task2">Task 2: Mathematical Functions: Calculate Average Track Length</h3>
+            <p><strong>Objective:</strong> Use mathematical functions to perform numeric calculations and gain insights from data.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Use the following starter code and write a query using mathematical functions to derive the average track length in minutes rounded to two decimal places.
+                    <pre><code>-- Calculate the average track length in minutes from the Track table.
+SELECT -- Your code here.
+FROM -- Your code here.</code></pre></li>
+                    <li>Tip: Track length is recorded within the table as milliseconds. There are 60,000 milliseconds in 1 minute.</li>
+                </ol>
+            </div>
+            <h4>Task 2 Solution:</h4>
+            <pre><code>SELECT ROUND(AVG(Milliseconds) / 60000, 2)
+FROM Track;</code></pre>
+        </article>
+
+        <article aria-labelledby="task3">
+            <h3 id="task3">Task 3: Date Function: Invoice Dates</h3>
+            <p><strong>Objective:</strong> Apply date functions to reformat and enhance the readability of date fields.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Use the following starter code and develop a query using date functions to reformat invoice dates into a user-friendly MM/dd/yyyy format.
+                    <pre><code>-- Reformat invoice dates to MM/dd/yyyy format.
+SELECT -- Your code here.
+FROM -- Your code here.
+-- Use the FORMAT function to format the InvoiceDate.</code></pre></li>
+                    <li>Tip: Use the FORMAT function to format the InvoiceDate in 'MM/dd/yyyy'.</li>
+                </ol>
+            </div>
+            <h4>Task 3 Solution:</h4>
+            <pre><code>SELECT InvoiceId, 
+FORMAT(InvoiceDate, 'MM/dd/yyyy')
+FROM Invoice;</code></pre>
+        </article>
+
+        <article aria-labelledby="task4">
+            <h3 id="task4">Task 4: Aggregation Function Application</h3>
+            <p><strong>Objective:</strong> Use aggregation functions to summarize and analyze grouped data.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Use the following starter code and formulate a query to determine total sales in descending order grouped by billing country from the invoice table.
+                    <pre><code>-- Get the total sales by BillingCountry from the Invoice table.
+-- Use the SUM function to calculate the total sales.
+-- Group the results by BillingCountry to get total sales per country.
+-- Order the results by Total Sales in descending order.
+SELECT -- Your code here.
+FROM -- Your code here.
+ORDER BY -- Your code here.</code></pre></li>
+                </ol>
+            </div>
+            <h4>Task 4 Solution:</h4>
+            <pre><code>SELECT BillingCountry, SUM(Total)
+FROM Invoice
+GROUP BY BillingCountry
+ORDER BY SUM(Total) DESC;</code></pre>
+        </article>
+    </section>
+
+    <section aria-label="Summary">
+        <h2>Summary</h2>
+        <p>In this activity you explored advanced techniques to transform raw data into usable data with the click of a button. Through practice, reflection, and feedback, you will strengthen your command over basic querying techniques essential for effective data manipulation.</p>
+    </section>
+
+    <section aria-label="Key Points">
+        <h2>Key Points</h2>
+        <p>Transforming data through string, mathematical, date, and aggregate functions are efficient ways to reveal powerful insights.</p>
+    </section>
+</body>
+</html>

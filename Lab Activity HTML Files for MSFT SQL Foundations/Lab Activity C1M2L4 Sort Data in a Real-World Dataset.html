@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort Data in a Real-World Dataset</title>
+</head>
+<body>
+    <h1>Sort Data in a Real-World Dataset</h1>
+    <section aria-label="Overview">
+        <h2>Overview</h2>
+        <p>This hands-on activity empowers you to apply SQL skills in sorting and organizing data within a real-world dataset using the ORDER BY clause. By utilizing the Chinook Database, you will gain practical experience in applying sorting techniques essential for effective data organization and presentation.</p>
+    </section>
+
+    <section aria-label="Learning Outcomes">
+        <h2>Learning Outcomes</h2>
+        <p>By the end of this activity, you will be able to:</p>
+        <ul>
+            <li>Apply sorting techniques using the ORDER BY clause.</li>
+            <li>Understand descending order and its uses.</li>
+            <li>Practice combined query techniques to achieve specific results.</li>
+        </ul>
+    </section>
+
+    <section aria-label="Getting Started">
+        <h2>Getting Started</h2>
+        <p>Open VS Code, and connect to the Chinook database using the SQL Server. Right click on the Chinook connection to create a new query.</p>
+    </section>
+
+    <section aria-label="Tasks">
+        <h2>Tasks</h2>
+
+        <article aria-labelledby="task1">
+            <h3 id="task1">Task 1: Sort Customer Names</h3>
+            <p><strong>Objective:</strong> Practice ordering data alphabetically to improve data readability and navigation.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Write a SQL query using the ORDER BY to retrieve and display customer names sorted alphabetically by their last names.</li>
+                    <pre><code>-- Write a SQL query to retrieve customer names sorted 
+-- alphabetically by their last names.
+SELECT -- Your code here.
+FROM -- Your code here.
+ORDER BY -- Your code here.</code></pre>
+                    <li>Tip: The default order is ascending, but it’s best practice to still include ASC in the code.</li>
+                </ol>
+            </div>
+            <h4>Task 1 Solution:</h4>
+            <pre><code>SELECT FirstName, LastName
+FROM Customer
+ORDER BY LastName ASC;</code></pre>
+        </article>
+
+        <article aria-labelledby="task2">
+            <h3 id="task2">Task 2: Organize Tracks by Unit Price</h3>
+            <p><strong>Objective:</strong> Understand descending order and its role in financial analysis or resource prioritization.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Formulate a query to retrieve the names of tracks sorted by their UnitPrice, from the most expensive to the least expensive.</li>
+                    <pre><code>-- Write a query to retrieve the names of tracks sorted by their UnitPrice
+-- in descending order, from the most expensive to the least expensive.
+SELECT -- Your code here.
+FROM -- Your code here.
+ORDER BY -- Your code here.</code></pre>
+                    <li>Tip: To format in descending order, use the truncated DESC in your code.</li>
+                </ol>
+            </div>
+            <h4>Task 2 Solution:</h4>
+            <pre><code>SELECT Name, UnitPrice
+FROM Track
+ORDER BY UnitPrice DESC;</code></pre>
+        </article>
+
+        <article aria-labelledby="task3">
+            <h3 id="task3">Task 3: Combine Sorting with Filtering</h3>
+            <p><strong>Objective:</strong> Reinforce combined query techniques used to achieve specific results when sorting and filtering data.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Using the following starter code, use a combination of WHERE and ORDER BY clauses to display InvoiceId for each CustomerId for customers in 'Germany', and ordered by Total in descending order.</li>
+                    <pre><code>-- Retrieve the InvoiceId and CustomerId for customers located in 'Germany', 
+-- and sort the results by Total in descending order.
+SELECT -- Your code here.
+FROM -- Your code here.
+ORDER BY -- Your code here.</code></pre>
+                </ol>
+            </div>
+            <h4>Task 3 Solution:</h4>
+            <pre><code>SELECT InvoiceId, CustomerId, Total
+FROM Invoice
+WHERE BillingCountry = 'Germany'
+ORDER BY Total DESC;</code></pre>
+        </article>
+
+        <article aria-labelledby="task4">
+            <h3 id="task4">Task 4: Multi-column Sorting</h3>
+            <p><strong>Objective:</strong> Learn to apply multi-level sorting, necessary for nuanced data analysis.</p>
+            <div>
+                <h4>Steps:</h4>
+                <ol>
+                    <li>Using the following starter code, construct a query to sort the tracks by MediaTypeId and, within each media type, by track name alphabetically.</li>
+                    <pre><code>-- Write a query to sort the tracks first by MediaTypeId in ascending order, 
+-- and then alphabetically by track name within each MediaTypeId.
+SELECT -- Your code here.
+FROM -- Your code here.
+ORDER BY -- Your code here.</code></pre>
+                </ol>
+            </div>
+            <h4>Task 4 Solution:</h4>
+            <pre><code>SELECT Name, MediaTypeId
+FROM Track
+ORDER BY MediaTypeId ASC, Name ASC;</code></pre>
+        </article>
+    </section>
+
+    <section aria-label="Summary">
+        <h2>Summary</h2>
+        <p>In this activity you explored advanced sorting techniques using the ORDER BY clause and ASC and DESC commands, enabling you to visualize your results in the most helpful way. Through practice, reflection, and feedback, you will strengthen your command over basic querying techniques essential for effective data manipulation.</p>
+    </section>
+
+    <section aria-label="Key Points">
+        <h2>Key Points</h2>
+        <p>Sorting results by ascending and descending makes data retrieval efficient and useful.</p>
+    </section>
+</body>
+</html>
