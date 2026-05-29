@@ -1,11 +1,11 @@
-# 📊 SQL for Quantitative Financial Analysis: A Technical Framework
+#  SQL for Quantitative Financial Analysis: A Technical Framework
 
 ![SQL Server](https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)
 ![Quantitative Analysis](https://img.shields.io/badge/Quantitative_Analysis-005A9C?style=for-the-badge&logo=mathworks&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![AI Assisted](https://img.shields.io/badge/GitHub_Copilot-000000?style=for-the-badge&logo=github-copilot&logoColor=white)
 
-## 📑 Table of Contents
+##  Table of Contents
 - [Project Overview](#-project-overview)
 - [Key Features](#-key-features)
 - [Getting Started](#-getting-started)
@@ -19,7 +19,7 @@
 
 ---
 
-## 📌 Project Overview
+##  Project Overview
 
 This repository provides a robust **Quantitative Data Engineering** framework designed to transform raw transactional data into high-level financial intelligence. By bridging the gap between database administration and quantitative analysis, this project demonstrates how SQL can be leveraged for sophisticated financial modeling and reporting.
 
@@ -27,19 +27,19 @@ This repository provides a robust **Quantitative Data Engineering** framework de
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
 | Feature | Description |
 |---------|-------------|
-| 💰 **Revenue Modeling** | Advanced aggregation and statistical benchmarking |
-| 🔧 **Data Engineering** | Views, schema management, and complex joins |
-| 🤖 **AI-Assisted Development** | GitHub Copilot integration for optimization |
-| 🐳 **Containerized Setup** | Docker-based SQL Server environment |
-| 📊 **Reporting Framework** | Automated CFO-level dashboards and summaries |
+|  **Revenue Modeling** | Advanced aggregation and statistical benchmarking |
+|  **Data Engineering** | Views, schema management, and complex joins |
+|  **AI-Assisted Development** | GitHub Copilot integration for optimization |
+|  **Containerized Setup** | Docker-based SQL Server environment |
+|  **Reporting Framework** | Automated CFO-level dashboards and summaries |
 
 ---
 
-## 🛠 Getting Started
+##  Getting Started
 
 ### Prerequisites
 - **Docker Desktop** (Required for containerized SQL Server)
@@ -97,7 +97,7 @@ Database: (leave empty initially)
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```
 SQL_Marathon_June/
@@ -117,7 +117,7 @@ SQL_Marathon_June/
 
 ---
 
-## 🎯 Core Competencies & Analytical Framework
+##  Core Competencies & Analytical Framework
 
 ### 1. Quantitative Analysis & Revenue Modeling
 
@@ -205,7 +205,7 @@ ORDER BY variance DESC;
 
 ---
 
-## 🔧 Troubleshooting
+##  Troubleshooting
 
 ### Connection Issues
 
@@ -255,7 +255,7 @@ Error: Failed to connect to localhost:1433
 
 ---
 
-## 📊 Results & Outcomes
+##  Results & Outcomes
 
 | Metric | Achievement |
 |--------|-------------|
@@ -267,7 +267,7 @@ Error: Failed to connect to localhost:1433
 
 ---
 
-## 📈 Learning Outcomes
+##  Learning Outcomes
 
 By completing this project, you will understand:
 - ✅ Advanced T-SQL querying and optimization
@@ -279,7 +279,7 @@ By completing this project, you will understand:
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Please follow these steps:
 
@@ -297,13 +297,13 @@ Contributions are welcome! Please follow these steps:
 
 ---
 
-## 📝 License
+##  License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
 
-## 🔗 Additional Resources
+##  Additional Resources
 
 - [Microsoft SQL Server Documentation](https://docs.microsoft.com/en-us/sql/)
 - [T-SQL Documentation](https://docs.microsoft.com/en-us/sql/t-sql/language-reference)
@@ -313,7 +313,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-## 📧 Contact & Support
+##  Contact & Support
 
 For questions or support:
 - **Author:** Tuncay-Sahin
