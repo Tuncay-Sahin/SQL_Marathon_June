@@ -159,7 +159,7 @@ SQL_Marathon_June/
 
 ---
 
-## 💡 Usage Examples
+##  Usage Examples
 
 ### Example 1: Calculate Average Revenue by Customer Segment
 
